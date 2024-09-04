@@ -1,6 +1,7 @@
 package com.zerobase.user.config.filter;
 
 import com.zerobase.user.service.customer.CustomerService;
+import com.zerobase.user.service.seller.SellerService;
 import com.zerobase.zerobasedomain.config.JwtAuthenticationProvider;
 import com.zerobase.zerobasedomain.domain.common.UserVo;
 import jakarta.servlet.*;
@@ -10,12 +11,12 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/customer/*")
+@WebFilter(urlPatterns = "/seller/*")
 @RequiredArgsConstructor
-public class CustomerFilter implements Filter {
+public class SellerFilter implements Filter {
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
-    private final CustomerService customerService;
+    private final SellerService sellerService;
 
 
     @Override
@@ -26,7 +27,7 @@ public class CustomerFilter implements Filter {
             throw new ServletException("Invalid Access");
         }
         UserVo vo = jwtAuthenticationProvider.getUserVo(token);
-        customerService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
+        sellerService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
                 ()-> new ServletException("Invalid access")
         );
         chain.doFilter(request, response);
