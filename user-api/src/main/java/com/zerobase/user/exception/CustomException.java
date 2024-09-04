@@ -3,10 +3,10 @@ package com.zerobase.user.exception;
 import lombok.Getter;
 
 @Getter
-public class CustomerException extends RuntimeException{
+public class CustomException extends RuntimeException{
     private final Errorcode errorCode;
 
-    public CustomerException(Errorcode errorCode){
+    public CustomException(Errorcode errorCode){
         super(errorCode.getDetail());
         this.errorCode = errorCode;
     }

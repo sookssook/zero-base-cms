@@ -1,8 +1,7 @@
-package com.zerobase.user.service;
+package com.zerobase.user.service.customer;
 
 import com.zerobase.user.client.MailgunClient;
 import com.zerobase.user.client.mailgun.SendMailForm;
-import feign.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
